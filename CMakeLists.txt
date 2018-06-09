@@ -1,16 +1,16 @@
 
 set(plug_sources
-    include/plugcontroller.h
-    source/plugcontroller.cpp
+    include/noteExpressionSynthController.h
+    source/noteExpressionSynthController.cpp
     #---
-    include/plugids.h
+    include/plugIDs.h
     #---
-    include/plugprocessor.h
-    source/plugprocessor.cpp
+    include/plugProcessor.h
+    source/plugProcessor.cpp
     #---
     include/version.h
     #---
-    source/plugfactory.cpp
+    source/plugFactory.cpp
     #---
     #---https://github.com/micknoise/Maximilian
     include/maximilian.h
@@ -18,7 +18,7 @@ set(plug_sources
 )
 
 #--- HERE change the target Name for your plug-in (for ex. set(target myDelay))-------
-set(target Gilberts)
+set(target Huntley)
 
 smtg_add_vst3plugin(${target} ${SDK_ROOT} ${plug_sources})
 set_target_properties(${target} PROPERTIES ${SDK_IDE_MYPLUGINS_FOLDER})
