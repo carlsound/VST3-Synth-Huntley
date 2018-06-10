@@ -1,26 +1,37 @@
 
-set(plug_sources
+set(synth_sources
     include/noteExpressionSynthController.h
     source/noteExpressionSynthController.cpp
     #---
-    include/plugIDs.h
+    include/noteExpressionSynthIDs.h
     #---
-    include/plugProcessor.h
-    source/plugProcessor.cpp
+    include/noteExpressionSynthProcessor.h
+    source/noteExpressionSynthProcessor.cpp
     #---
     include/version.h
     #---
-    source/plugFactory.cpp
+    source/noteExpressionSynthFactory.cpp
+    #---
+    include/noteExpressionSynthVoice.h
+    source/noteExpressionSynthVoice.cpp
+    #---
+    include/panNoteExpressionType.h
+    #---
+    include/releaseTimeModNoteExpressionType.h
+    #---
+    include/brownnoise.h
+    #---
+    include/filter.h
     #---
     #---https://github.com/micknoise/Maximilian
-    include/maximilian.h
-    include/maximilian.cpp
+    #---include/maximilian.h
+    #---include/maximilian.cpp
 )
 
 #--- HERE change the target Name for your plug-in (for ex. set(target myDelay))-------
 set(target Huntley)
 
-smtg_add_vst3plugin(${target} ${SDK_ROOT} ${plug_sources})
+smtg_add_vst3plugin(${target} ${SDK_ROOT} ${synth_sources})
 set_target_properties(${target} PROPERTIES ${SDK_IDE_MYPLUGINS_FOLDER})
 target_link_libraries(${target} PRIVATE base sdk)
 

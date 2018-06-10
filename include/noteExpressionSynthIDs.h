@@ -1,5 +1,6 @@
 //------------------------------------------------------------------------
 #pragma once
+#include "public.sdk/samples/vst/mda-vst3/source/mdaParameter.h"
 
 namespace Carlsound {
 namespace Huntley {
@@ -7,8 +8,8 @@ namespace Huntley {
 // HERE are defined the parameter Ids which are exported to the host
 enum HuntleyParams : Steinberg::Vst::ParamID
 {
-	kBypassId = 100,
-	kParamSpeedId = 102
+	//kBypassId = 100,
+	//kParamSpeedId = 102
 };
 
 

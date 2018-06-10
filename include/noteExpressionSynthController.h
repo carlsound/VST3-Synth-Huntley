@@ -2,16 +2,46 @@
 
 #pragma once
 
+#include "../include/noteExpressionSynthIDs.h"
+#include "noteExpressionSynthVoice.h"
+
 #include "public.sdk/source/vst/vsteditcontroller.h"
 #include "pluginterfaces/vst/ivstnoteexpression.h"
 #include "public.sdk/source/vst/vstnoteexpressiontypes.h"
 #include <memory>
 #include <atlconv.h>
 #include <codecvt>
-#include "public.sdk/samples/vst/note_expression_synth/source/note_expression_synth_controller.h"
 
 namespace Carlsound {
 namespace Huntley {
+
+#define MAX_VOICES				64
+#define MAX_RELEASE_TIME_SEC	5.0
+#define NUM_FILTER_TYPE			3
+#define NUM_TUNING_RANGE		2 
+
+	//-----------------------------------------------------------------------------
+	enum {
+		kParamReleaseTime,
+		kParamNoiseVolume,
+		kParamSinusVolume,
+		kParamTriangleVolume,
+		kParamSinusDetune,
+		kParamBypassSNA,
+		kParamTriangleSlop,
+		kParamFilterType,
+		kParamFilterFreq,
+		kParamFilterQ,
+		kParamMasterVolume,
+		kParamMasterTuning,
+		kParamVelToLevel,
+		kParamFilterFreqModDepth,
+		kParamTuningRange,
+		kParamActiveVoices,
+		kParamSquareVolume,
+
+		kNumGlobalParameters
+	};
 
 //-----------------------------------------------------------------------------
 class Controller : public Steinberg::Vst::EditController,
@@ -19,6 +49,16 @@ class Controller : public Steinberg::Vst::EditController,
 	               public Steinberg::Vst::IMidiMapping
 {
 public:
+//------------------------------------------------------------------------
+	//OBJ_METHODS(Controller, EditController)
+	//
+	DEFINE_INTERFACES
+		DEF_INTERFACE(INoteExpressionController)
+		DEF_INTERFACE(IMidiMapping)
+	END_DEFINE_INTERFACES(EditController)
+	//
+	REFCOUNT_METHODS(EditController)
+
 //------------------------------------------------------------------------
 	// create function required for Plug-in factory,
 	// it will be called to create new instances of this controller
@@ -41,11 +81,11 @@ public:
 	Steinberg::tresult PLUGIN_API setParamNormalized(Steinberg::Vst::ParamID tag,
 		                                             Steinberg::Vst::ParamValue value) SMTG_OVERRIDE;
 
+	/*
 	Steinberg::Vst::ParamValue PLUGIN_API normalizedParamToPlain(Steinberg::Vst::ParamID tag,
 		                                                         Steinberg::Vst::ParamValue valueNormalized) SMTG_OVERRIDE;
 	Steinberg::Vst::ParamValue PLUGIN_API plainParamToNormalized(Steinberg::Vst::ParamID tag, 
 		                                                         Steinberg::Vst::ParamValue value) SMTG_OVERRIDE;
-	/*
 	Steinberg::tresult PLUGIN_API getParamStringByValue(Steinberg::Vst::ParamID tag,
 	                                                    Steinberg::Vst::ParamValue valueNormalized,
 	                                                    Steinberg::Vst::String128 string) SMTG_OVERRIDE;

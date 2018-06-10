@@ -2,8 +2,8 @@
 #include "public.sdk/source/main/pluginfactoryvst3.h"
 
 #include "../include/noteExpressionSynthController.h"	// for createInstance
-#include "../include/plugProcessor.h"	// for createInstance
-#include "../include/plugIDs.h"			// for uids
+#include "../include/noteExpressionSynthProcessor.h"	// for createInstance
+#include "../include/noteExpressionSynthIDs.h"			// for uids
 #include "../include/version.h"			// for version and naming
 
 #define stringSubCategory	"Instrument|Synth"	// Subcategory for this Plug-in (to be changed if needed, see PlugType in ivstaudioprocessor.h)
@@ -18,7 +18,7 @@ BEGIN_FACTORY_DEF (stringCompanyName, stringCompanyWeb,	stringCompanyEmail)
 		        Steinberg::Vst::PlugType::kInstrumentSynth,		// Subcategory for this Plug-in (to be changed)
 				FULL_VERSION_STR,		// Plug-in version (to be changed)
 				kVstVersionString,		// the VST 3 SDK version (do not changed this, use always this define)
-				Carlsound::Huntley::PlugProcessor::createInstance)	// function pointer called when this component should be instantiated
+				Carlsound::Huntley::Processor::createInstance)	// function pointer called when this component should be instantiated
 
 	DEF_CLASS2 (INLINE_UID_FROM_FUID(Carlsound::Huntley::MyControllerUID),
 				Steinberg::PClassInfo::kManyInstances,  // cardinality   
