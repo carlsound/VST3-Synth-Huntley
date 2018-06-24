@@ -1,20 +1,22 @@
-///------------------------------------------------------------------------
-
 #pragma once
-
+//
 #include "../include/noteExpressionSynthIDs.h"
 #include "noteExpressionSynthVoice.h"
-
+//
 #include "public.sdk/source/vst/vsteditcontroller.h"
 #include "pluginterfaces/vst/ivstnoteexpression.h"
 #include "public.sdk/source/vst/vstnoteexpressiontypes.h"
 #include <memory>
+//
+#if SMTG_OS_WINDOWS
 #include <atlconv.h>
+#endif
+//
 #include <codecvt>
-
+//
 namespace Carlsound {
 namespace Huntley {
-
+//
 #define MAX_VOICES				64
 #define MAX_RELEASE_TIME_SEC	5.0
 #define NUM_FILTER_TYPE			3
