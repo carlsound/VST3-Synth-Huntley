@@ -24,10 +24,10 @@
 #define stringPluginName		"Huntley"
 //
 #if SMTG_PLATFORM_64
-#define stringOriginalFilename	"Huntley-x64.vst3"
+#define stringOriginalFilename	"Huntley_x64.vst3"
 #define stringFileDescription	stringPluginName" VST3-SDK (64Bit)"
 #else
-#define stringOriginalFilename	"Huntley-x86.vst3"
+#define stringOriginalFilename	"Huntley_x86.vst3"
 #define stringFileDescription	stringPluginName" VST3-SDK"
 #endif
 #define stringCompanyName		"Carlsound\0"

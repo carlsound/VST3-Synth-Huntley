@@ -32,9 +32,9 @@ set(synth_sources
 if(MAC)
 	set(target Huntley)
 elseif((WIN) AND (CMAKE_SIZEOF_VOID_P EQUAL "8"))
-    set(target Huntley-x64)
+    set(target Huntley_x64)
 elseif(WIN)
-	set(target Huntley-x86)
+	set(target Huntley_x86)
 endif()
 
 smtg_add_vst3plugin(${target} ${SDK_ROOT} ${synth_sources})
