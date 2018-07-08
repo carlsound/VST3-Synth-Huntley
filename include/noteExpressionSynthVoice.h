@@ -217,61 +217,61 @@ void Voice<SamplePrecision>::setNoteExpressionValue (Steinberg::int32 index, Ste
 			break;
 		}
 		//------------------------------
-		case Controller::kNoiseVolumeTypeID:
+        case Carlsound::Huntley::Controller::kNoiseVolumeTypeID:
 		{
 			Steinberg::Vst::VoiceBase<kNumParameters, SamplePrecision, 2, GlobalParameterState>::setNoteExpressionValue (kNoiseVolume, value * 2.);
 			break;
 		}
 		//------------------------------
-		case Controller::kSinusVolumeTypeID:
+		case Carlsound::Huntley::Controller::kSinusVolumeTypeID:
 		{
 			Steinberg::Vst::VoiceBase<kNumParameters, SamplePrecision, 2, GlobalParameterState>::setNoteExpressionValue (kSinusVolume, value * 2.);
 			break;
 		}
 		//------------------------------
-		case Controller::kTriangleVolumeTypeID:
+		case Carlsound::Huntley::Controller::kTriangleVolumeTypeID:
 		{
 			Steinberg::Vst::VoiceBase<kNumParameters, SamplePrecision, 2, GlobalParameterState>::setNoteExpressionValue (kTriangleVolume, value * 2.);
 			break;
 		}
 		//------------------------------
-		case Controller::kSquareVolumeTypeID:
+		case Carlsound::Huntley::Controller::kSquareVolumeTypeID:
 		{
 			Steinberg::Vst::VoiceBase<kNumParameters, SamplePrecision, 2, GlobalParameterState>::setNoteExpressionValue (kSquareVolume, value * 2.);
 			break;
 		}
 		//------------------------------
-		case Controller::kFilterFreqModTypeID:
+		case Carlsound::Huntley::Controller::kFilterFreqModTypeID:
 		{
 			Steinberg::Vst::VoiceBase<kNumParameters, SamplePrecision, 2, GlobalParameterState>::setNoteExpressionValue (kFilterFrequencyMod, (value - 0.5) * 2.);
 			break;
 		}
 		//------------------------------
-		case Controller::kFilterQModTypeID:
+		case Carlsound::Huntley::Controller::kFilterQModTypeID:
 		{
 			Steinberg::Vst::VoiceBase<kNumParameters, SamplePrecision, 2, GlobalParameterState>::setNoteExpressionValue (kFilterQMod, (value - 0.5) * 2.);
 			break;
 		}
 		//------------------------------
-		case Controller::kFilterTypeTypeID:
+		case Carlsound::Huntley::Controller::kFilterTypeTypeID:
 		{
 			filter->setType ((Filter::Type)std::min<Steinberg::int32> ((Steinberg::int32)(NUM_FILTER_TYPE * value), NUM_FILTER_TYPE - 1));
 			break;
 		}
 		//------------------------------
-		case Controller::kTriangleSlopeTypeID:
+		case Carlsound::Huntley::Controller::kTriangleSlopeTypeID:
 		{
 			Steinberg::Vst::VoiceBase<kNumParameters, SamplePrecision, 2, GlobalParameterState>::setNoteExpressionValue (kTriangleSlope, value);
 			break;
 		}
 		//------------------------------
-		case Controller::kSinusDetuneTypeID:
+		case Carlsound::Huntley::Controller::kSinusDetuneTypeID:
 		{
 			Steinberg::Vst::VoiceBase<kNumParameters, SamplePrecision, 2, GlobalParameterState>::setNoteExpressionValue (kSinusDetune, value);
 			break;
 		}
 		//------------------------------
-		case Controller::kReleaseTimeModTypeID:
+		case Carlsound::Huntley::Controller::kReleaseTimeModTypeID:
 		{
 			Steinberg::Vst::VoiceBase<kNumParameters, SamplePrecision, 2, GlobalParameterState>::setNoteExpressionValue (kReleaseTimeMod, 2 * (value - 0.5));
 			break;
