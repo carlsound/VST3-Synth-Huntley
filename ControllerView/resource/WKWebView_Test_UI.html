@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>WKWebView_Test_UI</title>
+        
+    </head>
+    
+    <body style="background-color:#1c87c9;">
+      
+      <p> Meter:
+        <meter id = "inputLevelMeter"
+              min = "0.0"
+              max = "1.0"
+              value = "0.0"
+              title = "Meter"
+              name = "Meter">
+        </meter>
+      </p>
+
+      <p> Progress Bar:
+        <progress id = "inputLevelProgress"
+                min = "0.0"
+                max = "1.0"
+                step = "0.01"
+                value = "0.0"
+                title = "Progress Bar">
+         </progress>
+      </p>
+      
+      <p> Button:
+        <input type="button"
+               id="testCommand"
+               value="Test Input"
+               onclick="OnButtonClick()">
+      </p>
+
+      <p> Range Input:
+        <input id = "inputSlider"
+               type = "range"
+               min = 0.0
+               max = 1.0
+               step = 0.01
+               oninput="OnSliderValueChanged(this.value)"
+               >
+        <label id="inputSliderLabel">
+            
+        </label>
+      </p>
+
+      <p> Color Picker:
+        <input id = "colorPicker"
+               type = "color"
+               value="#224488"
+               onchange="OnColorPickerChanged(this.value)">
+        </input>
+      </p>
+      
+      <script src="WKWebView_Test_UI.js"></script>
+      
+    </body>
+</html>
