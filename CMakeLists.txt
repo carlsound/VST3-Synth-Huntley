@@ -1,48 +1,11 @@
-
-set(synth_sources
-    ./include/noteExpressionSynthController.h
-    ./source/noteExpressionSynthController.cpp
-    #---
-    include/noteExpressionSynthIDs.h
-    #---
-    include/noteExpressionSynthProcessor.h
-    source/noteExpressionSynthProcessor.cpp
-    #---
-    include/version.h
-    #---
-    source/noteExpressionSynthFactory.cpp
-    #---
-    include/noteExpressionSynthVoice.h
-    source/noteExpressionSynthVoice.cpp
-    #---
-    include/panNoteExpressionType.h
-    #---
-    include/releaseTimeModNoteExpressionType.h
-    #---
-    include/brownnoise.h
-    #---
-    include/filter.h
-    #---
-    #---https://github.com/micknoise/Maximilian
-    #---include/maximilian.h
-    #---include/maximilian.cpp
+project(smtg-vst3-Huntley
+    VERSION ${vstsdk_VERSION}.0
+    DESCRIPTION "virtual instrument"
 )
-
-#--- HERE change the target Name for your plug-in (for ex. set(target myDelay))-------
-if(MAC)
-	set(target Huntley)
-elseif((WIN32) AND (CMAKE_SIZEOF_VOID_P EQUAL "8"))
-    set(target Huntley_x64)
-elseif(WIN32)
-	set(target Huntley_x86)
-endif()
-
-smtg_add_vst3plugin(${target} ${synth_sources})
-set_target_properties(${target} PROPERTIES ${SDK_IDE_MYPLUGINS_FOLDER})
-target_link_libraries(${target} base sdk)
-
-if(MAC)
-    smtg_set_bundle(${target} INFOPLIST "${CMAKE_CURRENT_LIST_DIR}/resource/Info.plist" PREPROCESS)
-elseif(WIN)
-    target_sources(${target} PRIVATE resource/plug.rc)
-endif()
+#
+set(CONTROLLER_VIEW "Huntley_ControllerView")
+set(BUNDLE_ID "net.carlsound.Huntley")
+set(BUNDLE_IDENT "${BUNDLE_ID}")
+#
+add_subdirectory(ControllerView)
+add_subdirectory(Plugin)
