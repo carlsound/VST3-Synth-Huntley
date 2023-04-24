@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------
-#include "public.sdk/source/main/pluginfactoryvst3.h"
+#include "public.sdk/source/main/pluginfactory.h"
 
 #include "../include/noteExpressionSynthController.h"	// for createInstance
 #include "../include/noteExpressionSynthProcessor.h"	// for createInstance

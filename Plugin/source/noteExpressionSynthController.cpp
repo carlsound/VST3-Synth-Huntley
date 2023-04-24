@@ -9,7 +9,7 @@
 #include "pluginterfaces/base/ibstream.h"
 #include <string>
 
-#include "public.sdk/source/vst/hosting/stringconvert.h"
+#include "public.sdk/source/vst/utility/stringconvert.h"
 #include "public.sdk/samples/vst/mda-vst3/source/mdaMultiBandController.h"
 
 #include "pluginterfaces/base/ustring.h"
@@ -75,7 +75,7 @@ namespace Huntley {
 //-----------------------------------------------------------------------------
 Steinberg::tresult PLUGIN_API Controller::initialize (FUnknown* context)
 {
-    Steinberg::tresult result = EditController::initialize (context);
+    Steinberg::tresult result = EditControllerEx1::initialize (context);
 	if (result == Steinberg::kResultTrue)
 	{
 		//---Create Parameters------------
@@ -205,7 +205,7 @@ Steinberg::tresult PLUGIN_API Controller::initialize (FUnknown* context)
 		param->setPrecision(0);
 		parameters.addParameter(param);
 		/////////////////////////////////
-		param = new Steinberg::Vst::RangeParameter(USTRING("Triangle Slop"), 
+		param = new Steinberg::Vst::RangeParameter(USTRING("Triangle Slope"),
 			                                       kParamTriangleSlop, 
 			                                       USTRING("%"), 
 			                                       0, 
@@ -561,6 +561,32 @@ Steinberg::tresult Controller::getParamStringByValue(Steinberg::Vst::ParamID tag
 	return Steinberg::kResultOk;
 }
 */
+
+//------------------------------------------------------------------------
+Steinberg::IPlugView* PLUGIN_API Controller::createView (Steinberg::FIDString name)
+{
+    // Here the Host wants to open your editor (if you have one)
+    if (Steinberg::FIDStringsEqual (name, Steinberg::Vst::ViewType::kEditor))
+    {
+        // create your editor here and return a IPlugView ptr of it
+        //std::cout << "\nmyplugincontroller::createView (FIDString name)\n";
+        //return this;
+        
+        // https://forums.steinberg.net/t/string128-literal-and-numeric-conversions/201790/2
+        #if(SMTG_OS_WINDOWS)
+            m_view = new Win32WebView2();
+            //
+            //m_view->setInputLevelFeedback(0.2);
+            //
+            return m_view;
+        #elif(SMTG_OS_OSX)
+            m_view = new MacWKWebView();
+            //
+            return m_view;
+        #endif
+    }
+    return nullptr;
+}
 
 //------------------------------------------------------------------------
 Steinberg::int32 PLUGIN_API Controller::getNoteExpressionCount(Steinberg::int32 busIndex,
