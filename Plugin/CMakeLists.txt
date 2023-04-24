@@ -35,6 +35,11 @@ smtg_add_vst3plugin(${target}
     #---https://github.com/micknoise/Maximilian
     #---include/maximilian.h
     #---include/maximilian.cpp
+    #---
+    include/MacWKWebView.h
+    source/MacWKWebView.cpp
+    #---
+    include/IPlugViewLifetimeEventHandler.h
 )
 
 if(APPLE)
@@ -43,9 +48,40 @@ if(APPLE)
         BUNDLE_IDENTIFIER ${BUNDLE_ID}
         COMPANY_NAME "Carlsound"
     )
+    #
+    set_target_properties(${target} PROPERTIES
+            XCODE_LINK_BUILD_PHASE_MODE BUILT_ONLY #KNOWN_LOCATION        
+            XCODE_EMBED_FRAMEWORKS "${CONTROLLER_VIEW}"
+            XCODE_EMBED_FRAMEWORKS_CODE_SIGN_ON_COPY ON
+    #        
+    #        MACOSX_BUNDLE TRUE
+    #    MACOSX_FRAMEWORK_IDENTIFIER
+    #        "net.carlsound.01.Test.NSView.Mac"
+    #    RESOURCES
+    #        "../resource/EditorViewController.xib"
+    #        "../resource/EditorWindowController.xib"
+            #XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "Apple Development"
+            #XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "John Carlson (Personal Team)"
+            XCODE_ATTRIBUTE_DEVELOPMENT_TEAM ${DEVELOPMENT_TEAM_ID}
+    )
+    #
+    configure_file(../bundleID.h.in 
+    ${PROJECT_BINARY_DIR}/include/bundleID.h 
+    @ONLY)
+    #
+    target_include_directories(${target} PRIVATE 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    "${PROJECT_BINARY_DIR}/include")
+    #
 elseif(WIN32)
     target_sources(${target} PRIVATE resource/plug.rc)
+    #
+    target_include_directories(${target} PRIVATE 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include)
 endif()
 
-set_target_properties(${target} PROPERTIES ${SDK_IDE_MYPLUGINS_FOLDER})
+set_target_properties(${target} PROPERTIES
+    # ${SDK_IDE_MYPLUGINS_FOLDER}
+    FOLDER ${PLUGIN_NAME}
+    CXX_STANDARD 17)
 target_link_libraries(${target} PRIVATE base sdk)

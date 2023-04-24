@@ -2,6 +2,7 @@
 //
 #include "../include/noteExpressionSynthIDs.h"
 #include "noteExpressionSynthVoice.h"
+#include "MacWKWebView.h"
 //
 #include "public.sdk/source/vst/vsteditcontroller.h"
 #include "pluginterfaces/vst/ivstnoteexpression.h"
@@ -46,20 +47,20 @@ namespace Huntley {
 	};
 
 //-----------------------------------------------------------------------------
-class Controller : public Steinberg::Vst::EditController,
+class Controller : public Steinberg::Vst::EditControllerEx1,
 	               public Steinberg::Vst::INoteExpressionController,
 	               public Steinberg::Vst::IMidiMapping
 {
 public:
 //------------------------------------------------------------------------
-	//OBJ_METHODS(Controller, EditController)
+	OBJ_METHODS(Controller, EditControllerEx1)
 	//
 	DEFINE_INTERFACES
 		DEF_INTERFACE(INoteExpressionController)
 		DEF_INTERFACE(IMidiMapping)
-	END_DEFINE_INTERFACES(EditController)
+	END_DEFINE_INTERFACES(EditControllerEx1)
 	//
-	REFCOUNT_METHODS(EditController)
+	REFCOUNT_METHODS(EditControllerEx1)
 
 //------------------------------------------------------------------------
 	// create function required for Plug-in factory,
@@ -92,6 +93,9 @@ public:
 	                                                    Steinberg::Vst::ParamValue valueNormalized,
 	                                                    Steinberg::Vst::String128 string) SMTG_OVERRIDE;
 	*/
+    
+    Steinberg::IPlugView* PLUGIN_API createView (Steinberg::FIDString name) SMTG_OVERRIDE;
+    
 	//////////////////////////////////////////////////////////////////////////////
 	//---from INoteExpressionController----
 	Steinberg::int32 PLUGIN_API getNoteExpressionCount(Steinberg::int32 busIndex, 
@@ -141,6 +145,8 @@ protected:
 	Steinberg::Vst::NoteExpressionTypeContainer noteExpressionTypes;
 
 	//std::shared_ptr<Steinberg::Vst::RangeParameter> m_speedRangeParameter;
+    
+    MacWKWebView* m_view;
 };
 
 //------------------------------------------------------------------------
